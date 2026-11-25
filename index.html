@@ -3,9 +3,721 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página Web</title>
+  <title>Introducción a la Computación | Franco Luis Urcapaza Valencia</title>
+  <style>
+    :root {
+      --bg-body: #f4f6f9;
+      --bg-card: #ffffff;
+      --primary: #1e3a8a;
+      --primary-light: #2563eb;
+      --accent: #0ea5e9;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --linkedin: #0a66c2;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Navegación superior */
+    header {
+      background-color: var(--primary);
+      color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.3px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* Contenedor general */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    section {
+      scroll-margin-top: 75px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.75rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.98rem;
+    }
+
+    /* 1. Portada del curso: Introducción a la Computación */
+    .hero-course {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #ffffff;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-course h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .hero-course p {
+      max-width: 780px;
+      color: #e0f2fe;
+      margin-bottom: 1.4rem;
+      font-size: 1.02rem;
+    }
+
+    .course-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .topic-tag {
+      background: rgba(15, 23, 42, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    /* 2. Información General (CV) */
+    .cv-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .cv-photo-box {
+      text-align: center;
+    }
+
+    .cv-photo {
+      width: 190px;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--primary-light);
+      background-color: #dbeafe;
+      display: block;
+      margin: 0 auto 0.8rem;
+    }
+
+    .cv-role {
+      font-size: 0.88rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .cv-details h3 {
+      font-size: 1.45rem;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .cv-meta {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1rem;
+    }
+
+    .cv-bio {
+      margin-bottom: 1.4rem;
+    }
+
+    .cv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .cv-block h4 {
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cv-block ul {
+      padding-left: 1.1rem;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .cv-block li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* 3. Cursos del Semestre */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .course-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .course-img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      background-color: #e0e7ff;
+    }
+
+    .course-body {
+      padding: 1.2rem;
+      flex: 1;
+    }
+
+    .course-body h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .course-body p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* 4. Plana Docente */
+    .lead-teacher {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--primary);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .lead-teacher img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #dbeafe;
+      border: 3px solid var(--accent);
+    }
+
+    .lead-teacher-info {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .teacher-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 0.4rem;
+    }
+
+    .lead-teacher-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .other-teachers-title {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      margin-bottom: 0.9rem;
+    }
+
+    .other-teachers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .mini-teacher-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .mini-teacher-card img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #e2e8f0;
+      flex-shrink: 0;
+    }
+
+    .mini-teacher-card h4 {
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .mini-teacher-card span {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    /* 5. Directorio de LinkedIn */
+    .linkedin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .linkedin-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .linkedin-person h4 {
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .linkedin-person span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .btn-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background-color: var(--linkedin);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-linkedin:hover {
+      opacity: 0.88;
+    }
+
+    /* Pie de página */
+    footer {
+      text-align: center;
+      padding: 1.8rem 1rem;
+      background-color: #0f172a;
+      color: #94a3b8;
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 720px) {
+      .cv-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .cv-grid {
+        text-align: left;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>¡Mi página en GitHub Pages está en línea!</h1>
+
+  <!-- Barra de navegación -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">Introducción a la Computación</div>
+      <nav>
+        <ul>
+          <li><a href="#curso">El Curso</a></li>
+          <li><a href="#sobre-mi">Mi Perfil (CV)</a></li>
+          <li><a href="#cursos">Mis Cursos</a></li>
+          <li><a href="#docentes">Docentes</a></li>
+          <li><a href="#linkedin">LinkedIn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SECCIÓN 1: DESCRIPCIÓN DEL CURSO -->
+    <section id="curso" class="hero-course">
+      <span class="hero-badge">Unidad Didáctica • Semestre Académico</span>
+      <h1>Introducción a la Computación</h1>
+      <p>
+        Curso orientado a comprender los fundamentos de la informática moderna, la arquitectura de computadoras,
+        los sistemas operativos, la gestión eficiente de información digital y las bases del desarrollo web
+        mediante estándares como HTML y CSS para la creación de sitios funcionales en la nube.
+      </p>
+      <div class="course-topics">
+        <span class="topic-tag">Hardware y Software</span>
+        <span class="topic-tag">Sistemas Operativos</span>
+        <span class="topic-tag">Ofimática y Productividad</span>
+        <span class="topic-tag">Redes e Internet</span>
+        <span class="topic-tag">Desarrollo Web (HTML / GitHub Pages)</span>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: INFORMACIÓN GENERAL TIPO CV -->
+    <section id="sobre-mi">
+      <h2 class="section-title">Información General (CV)</h2>
+      <p class="section-subtitle">Perfil académico y datos personales del estudiante.</p>
+
+      <div class="cv-card">
+        <div class="cv-photo-box">
+          <!-- Sube tu foto a la carpeta img/ con el nombre perfil.jpg -->
+          <img src="img/perfil.jpg" alt="Foto personal de Franco Luis Urcapaza Valencia" class="cv-photo">
+          <div class="cv-role">Estudiante • Grupo CCOMP1</div>
+        </div>
+
+        <div class="cv-details">
+          <h3>Franco Luis Urcapaza Valencia</h3>
+          <p class="cv-meta">Arequipa, Perú • IESTP "Pedro P. Díaz" (Turno Nocturno)</p>
+          <p class="cv-bio">
+            Estudiante de Ciencias de la Computación en el Instituto de Educación Superior Tecnológico Público
+            "Pedro P. Díaz", con interés en el desarrollo web, la gestión administrativa digital, la ofimática
+            avanzada y las tecnologías de la información.
+          </p>
+
+          <div class="cv-grid">
+            <div class="cv-block">
+              <h4>Formación Académica</h4>
+              <ul>
+                <li><strong>IESTP "Pedro P. Díaz"</strong> — Ciencia de la Computación (En curso)</li>
+                <li><strong>Centro Cultural Peruano Norteamericano</strong> — Programa de Idioma Inglés</li>
+                <li><strong>Universidad Católica San Pablo (UCSP)</strong> — Estudios en Ing. Electrónica y de Telecomunicaciones</li>
+              </ul>
+            </div>
+
+            <div class="cv-block">
+              <h4>Habilidades y Herramientas</h4>
+              <ul>
+                <li>Desarrollo web inicial (HTML5, CSS3 y GitHub Pages)</li>
+                <li>Microsoft Excel y gestión de hojas de cálculo</li>
+                <li>Redacción y planificación de documentos administrativos</li>
+                <li>Configuración de entornos de software y sistemas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: CURSOS DEL SEMESTRE -->
+    <section id="cursos">
+      <h2 class="section-title">Cursos del Semestre</h2>
+      <p class="section-subtitle">Unidades didácticas que estoy cursando actualmente.</p>
+
+      <div class="courses-grid">
+        <!-- Curso 1 -->
+        <article class="course-card">
+          <img src="img/curso-computacion.jpg" alt="Introducción a la Computación" class="course-img">
+          <div class="course-body">
+            <h3>Introducción a la Computación</h3>
+            <p>Estudio de los componentes del computador, sistemas operativos, herramientas digitales y fundamentos de creación de páginas web.</p>
+          </div>
+        </article>
+
+        <!-- Curso 2 -->
+        <article class="course-card">
+          <img src="img/curso-logica.jpg" alt="Lógica" class="course-img">
+          <div class="course-body">
+            <h3>Lógica</h3>
+            <p>Desarrollo del razonamiento formal, proposiciones, tablas de verdad y pensamiento estructurado aplicado a la resolución de problemas.</p>
+          </div>
+        </article>
+
+        <!-- Curso 3 -->
+        <article class="course-card">
+          <img src="img/curso-asistencia.jpg" alt="Asistencia Administrativa" class="course-img">
+          <div class="course-body">
+            <h3>Asistencia Administrativa</h3>
+            <p>Organización de procesos de oficina, atención institucional, gestión documental y soporte operativo en entornos empresariales.</p>
+          </div>
+        </article>
+
+        <!-- Curso 4 -->
+        <article class="course-card">
+          <img src="img/curso-contabilidad.jpg" alt="Contabilidad" class="course-img">
+          <div class="course-body">
+            <h3>Contabilidad</h3>
+            <p>Principios contables básicos, registro de operaciones financieras, control de ingresos y egresos, y análisis de estados elementales.</p>
+          </div>
+        </article>
+
+        <!-- Curso 5 -->
+        <article class="course-card">
+          <img src="img/curso-documentos.jpg" alt="Planificación de Documentos" class="course-img">
+          <div class="course-body">
+            <h3>Planificación de Documentos</h3>
+            <p>Estructura, redacción formal, normativa y diseño de informes, solicitudes, actas y documentación administrativa profesional.</p>
+          </div>
+        </article>
+
+        <!-- Curso 6 -->
+        <article class="course-card">
+          <img src="img/curso-retorica.jpg" alt="Retórica" class="course-img">
+          <div class="course-body">
+            <h3>Retórica</h3>
+            <p>Técnicas de expresión oral y escrita, argumentación efectiva, oratoria y comunicación asertiva en contextos académicos y laborales.</p>
+          </div>
+        </article>
+
+        <!-- Curso 7 -->
+        <article class="course-card">
+          <img src="img/curso-gnoseologia.jpg" alt="Gnoseología" class="course-img">
+          <div class="course-body">
+            <h3>Gnoseología</h3>
+            <p>Análisis filosófico sobre el origen, la naturaleza, los límites y la validez del conocimiento humano y científico.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: DOCENTES -->
+    <section id="docentes">
+      <h2 class="section-title">Plana Docente</h2>
+      <p class="section-subtitle">Docente encargado de la unidad didáctica y profesores del semestre.</p>
+
+      <!-- Docente encargado principal -->
+      <div class="lead-teacher">
+        <img src="img/docente-principal.jpg" alt="Foto del docente encargado">
+        <div class="lead-teacher-info">
+          <span class="teacher-badge">Docente Encargado • Introducción a la Computación</span>
+          <!-- Reemplaza con el nombre real de tu profesor -->
+          <h3>Prof. [Nombre y Apellidos del Docente Encargado]</h3>
+          <p>
+            Docente responsable de la conducción académica del curso de Introducción a la Computación,
+            guiando el aprendizaje práctico en herramientas informáticas y desarrollo web.
+          </p>
+        </div>
+      </div>
+
+      <!-- Otros docentes (en menor escala) -->
+      <h3 class="other-teachers-title">Otros Docentes del Semestre</h3>
+      <div class="other-teachers-grid">
+        <div class="mini-teacher-card">
+          <img src="img/docente-1.jpg" alt="Docente">
+          <div>
+            <h4>Prof. [Nombre del Docente]</h4>
+            <span>Lógica</span>
+          </div>
+        </div>
+
+        <div class="mini-teacher-card">
+          <img src="img/docente-2.jpg" alt="Docente">
+          <div>
+            <h4>Prof. [Nombre del Docente]</h4>
+            <span>Asistencia Administrativa</span>
+          </div>
+        </div>
+
+        <div class="mini-teacher-card">
+          <img src="img/docente-3.jpg" alt="Docente">
+          <div>
+            <h4>Prof. [Nombre del Docente]</h4>
+            <span>Contabilidad</span>
+          </div>
+        </div>
+
+        <div class="mini-teacher-card">
+          <img src="img/docente-4.jpg" alt="Docente">
+          <div>
+            <h4>Prof. [Nombre del Docente]</h4>
+            <span>Planificación de Documentos</span>
+          </div>
+        </div>
+
+        <div class="mini-teacher-card">
+          <img src="img/docente-5.jpg" alt="Docente">
+          <div>
+            <h4>Prof. [Nombre del Docente]</h4>
+            <span>Retórica</span>
+          </div>
+        </div>
+
+        <div class="mini-teacher-card">
+          <img src="img/docente-6.jpg" alt="Docente">
+          <div>
+            <h4>Prof. [Nombre del Docente]</h4>
+            <span>Gnoseología</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: PERFILES DE LINKEDIN -->
+    <section id="linkedin">
+      <h2 class="section-title">Perfiles de LinkedIn</h2>
+      <p class="section-subtitle">Enlaces directos a perfiles profesionales.</p>
+
+      <div class="linkedin-grid">
+        <!-- Tu perfil -->
+        <div class="linkedin-card">
+          <div class="linkedin-person">
+            <h4>Franco Luis Urcapaza Valencia</h4>
+            <span>Estudiante • Autor del sitio</span>
+          </div>
+          <!-- Reemplaza # con el enlace real de tu perfil de LinkedIn -->
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-linkedin">
+            LinkedIn
+          </a>
+        </div>
+
+        <!-- Perfil de docente o compañero 1 -->
+        <div class="linkedin-card">
+          <div class="linkedin-person">
+            <h4>[Nombre y Apellidos]</h4>
+            <span>Docente Encargado</span>
+          </div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-linkedin">
+            LinkedIn
+          </a>
+        </div>
+
+        <!-- Perfil adicional 2 -->
+        <div class="linkedin-card">
+          <div class="linkedin-person">
+            <h4>[Nombre y Apellidos]</h4>
+            <span>Compañero(a) / Docente</span>
+          </div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-linkedin">
+            LinkedIn
+          </a>
+        </div>
+
+        <!-- Perfil adicional 3 -->
+        <div class="linkedin-card">
+          <div class="linkedin-person">
+            <h4>[Nombre y Apellidos]</h4>
+            <span>Compañero(a) / Docente</span>
+          </div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-linkedin">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Proyecto Académico — Introducción a la Computación • Franco Luis Urcapaza Valencia</p>
+  </footer>
+
 </body>
 </html>
